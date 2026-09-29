@@ -1,4 +1,3 @@
-
 import streamlit as st
 import joblib
 import numpy as np
@@ -279,13 +278,15 @@ if predict_button:
 
     # Make prediction
     prediction = model.predict(input_scaled)
-predicted_gpa = prediction[0]
 
-# Convert model's 0–2 GPA scale to 0–4 GPA scale
-predicted_gpa = predicted_gpa * 2
+    # Extract predicted GPA
+    predicted_gpa = prediction[0]
 
-# Keep GPA within 0–4
-predicted_gpa = max(0.0, min(4.0, predicted_gpa))
+    # Convert original 0–2 GPA scale to 0–4 GPA scale
+    predicted_gpa = predicted_gpa * 2
+
+    # Keep GPA inside the 0–4 range
+    predicted_gpa = max(0.0, min(4.0, predicted_gpa))
 
     # ========================================================
     # RESULT
